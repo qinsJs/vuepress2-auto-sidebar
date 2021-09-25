@@ -23,7 +23,7 @@ export default class main extends basic {
     // console.log('子目录所有内容 > ',子目录所有内容);
 
     子目录所有内容.forEach((文件名) => {
-      const is笔记目录 = 文件名.endsWith(".js");
+      const is笔记目录 = this.i笔记目录(文件名);
 
       if (is笔记目录) {
         console.log("上报", path);

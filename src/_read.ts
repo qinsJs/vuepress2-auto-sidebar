@@ -13,13 +13,20 @@ export default class main extends basic {
     children: [],
   });
 
+  i笔记目录 = (文件名: string): boolean => {
+    // 文件名.endsWith(".js"));// 匹配全部 .js 问题太大了，现在只匹配特定文件
+    const 配置名 = ["chapter.js", "config.js"];
+
+    return 配置名.some((element) => element == 文件名);
+  };
+
   /**
    *
    * @param root 某路径，如：js
    * @param filesList 和路径下的所有文件，如章节：1，2，3，4
    */
   private g获取配置(root: string, filesList: Array<string>): any {
-    const s配置 = filesList.filter((文件名) => 文件名.endsWith(".js"));
+    const s配置 = filesList.filter(this.i笔记目录);
 
     const 配置路径 = (() => {
       if (s配置.length === 0)

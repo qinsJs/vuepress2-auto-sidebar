@@ -25,6 +25,11 @@ var main = /** @class */ (function (_super) {
             collapsable: false,
             children: [],
         }); };
+        _this.i笔记目录 = function (文件名) {
+            // 文件名.endsWith(".js"));// 匹配全部 .js 问题太大了，现在只匹配特定文件
+            var 配置名 = ["chapter.js", "config.js"];
+            return 配置名.some(function (element) { return element == 文件名; });
+        };
         return _this;
     }
     /**
@@ -33,7 +38,7 @@ var main = /** @class */ (function (_super) {
      * @param filesList 和路径下的所有文件，如章节：1，2，3，4
      */
     main.prototype.g获取配置 = function (root, filesList) {
-        var s配置 = filesList.filter(function (文件名) { return 文件名.endsWith(".js"); });
+        var s配置 = filesList.filter(this.i笔记目录);
         var 配置路径 = (function () {
             if (s配置.length === 0)
                 throw new Error(root + " \u76EE\u5F55\u4E0B\u6CA1\u6709 .js \u7684\u914D\u7F6E\u6587\u4EF6\uFF01");

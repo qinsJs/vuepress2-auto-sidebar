@@ -37,7 +37,7 @@ var main = /** @class */ (function (_super) {
         var 子目录所有内容 = this.g读取目录内容_去除隐藏(全路径);
         // console.log('子目录所有内容 > ',子目录所有内容);
         子目录所有内容.forEach(function (文件名) {
-            var is笔记目录 = 文件名.endsWith(".js");
+            var is笔记目录 = _this.i笔记目录(文件名);
             if (is笔记目录) {
                 console.log("上报", path);
                 callback(path); // 笔记目录，就上报上去
