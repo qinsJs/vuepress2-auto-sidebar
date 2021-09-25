@@ -61,7 +61,35 @@ var main = /** @class */ (function (_super) {
             .map(function (笔记名字) {
             return 笔记名字.startsWith("/") ? 笔记名字 : "/" + 笔记名字;
         });
-        return 我辛辛苦苦的笔记们;
+        /**
+         * 如果 文章前面有数字编号
+         *
+         * 那就可以用此编好进行排序
+         */
+        var 获取编号 = function (笔记路径) {
+            if (!笔记路径 || !笔记路径.length)
+                return -1;
+            var 笔记名 = 笔记路径;
+            if (笔记路径.indexOf("/") !== -1) {
+                var 路径们 = 笔记路径.split("/");
+                笔记名 = 路径们[路径们.length - 1];
+            }
+            var arr = 笔记名.match(/^[0-9]+/g);
+            if (!arr || !arr.length)
+                return -1;
+            return +arr[0];
+        };
+        return 我辛辛苦苦的笔记们 // 排序，避免 10 > 2
+            .sort(function (a, b) {
+            var aa = 获取编号(a);
+            var bb = 获取编号(b);
+            // console.log(a, "=>", aa, "|", b, "=>", bb);
+            if (aa < 0)
+                return 1;
+            if (bb < 0)
+                return -1;
+            return 获取编号(a) - 获取编号(b);
+        });
     };
     /**
      *
