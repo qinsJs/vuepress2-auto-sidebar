@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "outDir": "out",
+    // "strict": true, // 开启所有x严格的类型检查
+    "alwaysStrict": true // 在代码中注入'use strict'
+  }
+}
