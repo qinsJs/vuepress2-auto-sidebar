@@ -11,19 +11,23 @@ npm i vuepress2-auto-sidebar
 `.vuepress/config.js`
 
 ```js
+const path = require("path");
 const { default: Sidebar } = require("vuepress2-auto-sidebar");
+const vuepressPtah = path.resolve(__dirname, "..");
 
 module.exports = {
   // ..
 
   themeConfig: {
     logo: "/logo/moon.svg",
-    sidebar: new Sidebar().run(), // <<<<
+    sidebar: new Sidebar(vuepressPtah).run(), // <<<<
   },
 
   // ..
 };
 ```
+
+🌚 因为能力问题，现在用起来要复杂一些。。。
 
 ## 3
 

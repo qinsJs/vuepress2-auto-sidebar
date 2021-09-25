@@ -20,8 +20,13 @@ var fs = require("fs");
 var 忽略文件 = ["node_modules"];
 var main = /** @class */ (function (_super) {
     __extends(main, _super);
-    function main() {
-        return _super !== null && _super.apply(this, arguments) || this;
+    function main(rootPath) {
+        var _this = _super.call(this) || this;
+        if (!rootPath) {
+            throw new Error("必须设置Vuepress的根目录");
+        }
+        _this.setRootPtah(rootPath);
+        return _this;
     }
     main.prototype.遍历文件夹 = function (path, callback) {
         var _this = this;
@@ -61,7 +66,9 @@ var main = /** @class */ (function (_super) {
             vuePress侧边栏对象[_笔记路径] = this.c生成Sidebar对象路径(笔记路径);
         }
         console.log(JSON.stringify(vuePress侧边栏对象, null, 2));
-        fs.writeFile(this.g全路径(".vuepress/components/sidebar.json"), JSON.stringify(vuePress侧边栏对象, null, 2), console.log);
+        if (this.i文件或文件夹是否存在(this.g全路径(".vuepress/components/"))) {
+            fs.writeFile(this.g全路径(".vuepress/components/sidebar.json"), JSON.stringify(vuePress侧边栏对象, null, 2), console.log);
+        }
         return vuePress侧边栏对象;
     };
     return main;

@@ -59,11 +59,13 @@ export default class main extends basic {
 
     console.log(JSON.stringify(vuePress侧边栏对象, null, 2));
 
-    fs.writeFile(
-      this.g全路径(".vuepress/components/sidebar.json"),
-      JSON.stringify(vuePress侧边栏对象, null, 2),
-      console.log
-    );
+    if (this.i文件或文件夹是否存在(this.g全路径(".vuepress/components/"))) {
+      fs.writeFile(
+        this.g全路径(".vuepress/components/sidebar.json"),
+        JSON.stringify(vuePress侧边栏对象, null, 2),
+        console.log
+      );
+    }
 
     return vuePress侧边栏对象;
   }

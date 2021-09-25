@@ -19,6 +19,10 @@ var default_1 = /** @class */ (function () {
             }
         };
     }
+    default_1.prototype.setRootPtah = function (path) {
+        if (this.i文件或文件夹是否存在(path))
+            this.rootPtah = path;
+    };
     default_1.prototype.i文件或文件夹是否存在 = function (dir) {
         try {
             fs.accessSync(dir, fs.constants.F_OK);
@@ -48,7 +52,7 @@ var default_1 = /** @class */ (function () {
         return +arr[0];
     };
     default_1.prototype.gVuepressRoot = function () {
-        return path.resolve(__dirname, "../..");
+        return this.rootPtah || path.resolve(__dirname, "../..");
     };
     default_1.prototype.g全路径 = function () {
         var pathSegments = [];
