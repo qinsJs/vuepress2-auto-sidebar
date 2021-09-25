@@ -1,11 +1,9 @@
 # Vuepress 2 侧边栏生成
 
-vuepress2-auto-sidebar
-
 ## 1
 
 ```sh
-npm i vuepress2sidebar
+npm i vuepress2-auto-sidebar
 ```
 
 ## 2
@@ -13,7 +11,7 @@ npm i vuepress2sidebar
 `.vuepress/config.js`
 
 ```js
-const { default: Sidebar } = require("vuepress2sidebar");
+const { default: Sidebar } = require("vuepress2-auto-sidebar");
 
 module.exports = {
   // ..

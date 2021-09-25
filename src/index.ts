@@ -4,6 +4,15 @@ import * as fs from "fs";
 const 忽略文件 = ["node_modules"];
 
 export default class main extends basic {
+  constructor(rootPath?: string) {
+    super();
+    if (!rootPath) {
+      throw new Error("必须设置Vuepress的根目录");
+    }
+
+    this.setRootPtah(rootPath);
+  }
+
   遍历文件夹(path: string, callback?: (path: string) => {}) {
     const 全路径 = this.g全路径(path);
     // console.log("遍历目录 > ", 全路径);

@@ -1,6 +1,10 @@
 import * as fs from "fs";
 import * as path from "path";
 export default class {
+  protected rootPtah: string;
+  protected setRootPtah(path: string) {
+    if (this.i文件或文件夹是否存在(path)) this.rootPtah = path;
+  }
   protected i是否是文件夹 = (f: string) => {
     try {
       return fs.statSync(f).isDirectory();
@@ -43,7 +47,7 @@ export default class {
   }
 
   gVuepressRoot() {
-    return path.resolve(__dirname, "../..");
+    return this.rootPtah || path.resolve(__dirname, "../..");
   }
 
   g全路径(...pathSegments: string[]) {
