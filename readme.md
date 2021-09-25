@@ -11,9 +11,9 @@ npm i vuepress2-auto-sidebar
 `.vuepress/config.js`
 
 ```js
-const path = require("path");
+const path = require("path"); // <<<<
 const { default: Sidebar } = require("vuepress2-auto-sidebar");
-const vuepressPtah = path.resolve(__dirname, "..");
+const vuepressPtah = path.resolve(__dirname, ".."); // <<<<
 
 module.exports = {
   // ..
