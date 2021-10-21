@@ -38,6 +38,9 @@ export default class main extends basic {
     });
   }
 
+  /**
+   * 入口函数
+   */
   run() {
     const 所有文件 = this.g读取目录内容_去除隐藏(this.gVuepressRoot()) //
       .filter((fileName) => !忽略文件.includes(fileName));
@@ -59,14 +62,18 @@ export default class main extends basic {
 
     console.log(JSON.stringify(vuePress侧边栏对象, null, 2));
 
+    this.存储配置到本地(vuePress侧边栏对象);
+
+    return vuePress侧边栏对象;
+  }
+
+  private 存储配置到本地(sidebar) {
     if (this.i文件或文件夹是否存在(this.g全路径(".vuepress/components/"))) {
       fs.writeFile(
         this.g全路径(".vuepress/components/sidebar.json"),
-        JSON.stringify(vuePress侧边栏对象, null, 2),
+        JSON.stringify(sidebar, null, 2),
         console.log
       );
     }
-
-    return vuePress侧边栏对象;
   }
 }
