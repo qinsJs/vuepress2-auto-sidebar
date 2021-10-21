@@ -32,7 +32,9 @@ export default class {
   }
 
   protected g读取目录内容_去除隐藏(dir: string) {
-    return this.g读取目录内容(dir).filter((文件名) => !文件名.startsWith("."));
+    return this.g读取目录内容(dir)
+      .filter((文件名) => !文件名.startsWith("."))
+      .sort(this.sortFunc);
   }
 
   // 获取name前面的 编号
@@ -52,5 +54,38 @@ export default class {
 
   g全路径(...pathSegments: string[]) {
     return path.resolve(this.gVuepressRoot(), ...pathSegments);
+  }
+
+  protected sortFunc(a, b) {
+    /**
+     * 如果 文章前面有数字编号
+     *
+     * 那就可以用此编好进行排序
+     */
+    const 获取编号 = (笔记路径: string): number => {
+      if (!笔记路径 || !笔记路径.length) return -1;
+      if (typeof 笔记路径 !== "string") return -1;
+
+      let 笔记名 = 笔记路径;
+
+      if (笔记路径.indexOf("/") !== -1) {
+        const 路径们 = 笔记路径.split("/");
+        笔记名 = 路径们[路径们.length - 1];
+      }
+
+      const arr: string[] = 笔记名.match(/^[0-9]+/g);
+
+      if (!arr || !arr.length) return -1;
+
+      return +arr[0];
+    };
+
+    const aa = 获取编号(a);
+    const bb = 获取编号(b);
+    // console.log(a, "=>", aa, "|", b, "=>", bb);
+    if (aa < 0) return 1;
+    if (bb < 0) return -1;
+
+    return 获取编号(a) - 获取编号(b);
   }
 }
