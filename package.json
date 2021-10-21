@@ -12,5 +12,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^16.9.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:qinsJs/vuepress2-auto-sidebar.git"
   }
 }
