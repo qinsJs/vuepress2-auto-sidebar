@@ -1,6 +1,6 @@
 {
   "name": "vuepress2-auto-sidebar",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "vuepress 2 侧边栏生成",
   "main": "out/index.js",
   "scripts": {
