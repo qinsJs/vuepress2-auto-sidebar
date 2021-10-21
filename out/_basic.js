@@ -40,7 +40,9 @@ var default_1 = /** @class */ (function () {
         return fs.readdirSync(dir);
     };
     default_1.prototype.g读取目录内容_去除隐藏 = function (dir) {
-        return this.g读取目录内容(dir).filter(function (文件名) { return !文件名.startsWith("."); });
+        return this.g读取目录内容(dir)
+            .filter(function (文件名) { return !文件名.startsWith("."); })
+            .sort(this.sortFunc);
     };
     // 获取name前面的 编号
     default_1.prototype.g获取编号 = function (s) {
@@ -60,6 +62,36 @@ var default_1 = /** @class */ (function () {
             pathSegments[_i] = arguments[_i];
         }
         return path.resolve.apply(path, __spreadArray([this.gVuepressRoot()], pathSegments));
+    };
+    default_1.prototype.sortFunc = function (a, b) {
+        /**
+         * 如果 文章前面有数字编号
+         *
+         * 那就可以用此编好进行排序
+         */
+        var 获取编号 = function (笔记路径) {
+            if (!笔记路径 || !笔记路径.length)
+                return -1;
+            if (typeof 笔记路径 !== "string")
+                return -1;
+            var 笔记名 = 笔记路径;
+            if (笔记路径.indexOf("/") !== -1) {
+                var 路径们 = 笔记路径.split("/");
+                笔记名 = 路径们[路径们.length - 1];
+            }
+            var arr = 笔记名.match(/^[0-9]+/g);
+            if (!arr || !arr.length)
+                return -1;
+            return +arr[0];
+        };
+        var aa = 获取编号(a);
+        var bb = 获取编号(b);
+        // console.log(a, "=>", aa, "|", b, "=>", bb);
+        if (aa < 0)
+            return 1;
+        if (bb < 0)
+            return -1;
+        return 获取编号(a) - 获取编号(b);
     };
     return default_1;
 }());

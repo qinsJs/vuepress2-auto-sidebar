@@ -49,6 +49,9 @@ var main = /** @class */ (function (_super) {
             }
         });
     };
+    /**
+     * 入口函数
+     */
     main.prototype.run = function () {
         var 所有文件 = this.g读取目录内容_去除隐藏(this.gVuepressRoot()) //
             .filter(function (fileName) { return !忽略文件.includes(fileName); });
@@ -66,10 +69,13 @@ var main = /** @class */ (function (_super) {
             vuePress侧边栏对象[_笔记路径] = this.c生成Sidebar对象路径(笔记路径);
         }
         console.log(JSON.stringify(vuePress侧边栏对象, null, 2));
-        if (this.i文件或文件夹是否存在(this.g全路径(".vuepress/components/"))) {
-            fs.writeFile(this.g全路径(".vuepress/components/sidebar.json"), JSON.stringify(vuePress侧边栏对象, null, 2), console.log);
-        }
+        this.存储配置到本地(vuePress侧边栏对象);
         return vuePress侧边栏对象;
+    };
+    main.prototype.存储配置到本地 = function (sidebar) {
+        if (this.i文件或文件夹是否存在(this.g全路径(".vuepress/components/"))) {
+            fs.writeFile(this.g全路径(".vuepress/components/sidebar.json"), JSON.stringify(sidebar, null, 2), console.log);
+        }
     };
     return main;
 }(_read_1.default));
